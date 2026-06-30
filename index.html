@@ -73,10 +73,22 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                 Get FFD PRO
             </a>
+            <!-- One-time purchase badges -->
+            <div class="mt-3 flex flex-col gap-1.5">
+                <div class="flex items-center gap-2 text-xs text-emerald-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    One-time purchase — no subscription
+                </div>
+                <div class="flex items-center gap-2 text-xs text-emerald-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Free updates &amp; support, forever
+                </div>
+            </div>
         </div>
         
         <nav class="p-4 flex flex-col gap-1 text-sm font-medium text-zinc-400 overflow-y-auto flex-1">
             <a href="#introduction" class="nav-link block py-2 px-3 rounded-md">Introduction & Use Cases</a>
+            <a href="#comparison" class="nav-link block py-2 px-3 rounded-md">MaxScript vs C++ PRO</a>
             <a href="#lattice-resolution" class="nav-link block py-2 px-3 rounded-md">1. Lattice Resolution</a>
             <a href="#the-deformers" class="nav-link block py-2 px-3 rounded-md">2. The 25 Deformers</a>
             <a href="#layer-properties" class="nav-link block py-2 px-3 rounded-md">3. Layer Properties</a>
@@ -141,6 +153,182 @@
                 </div>
             </section>
 
+            <!-- MaxScript vs C++ Comparison -->
+            <section id="comparison" class="space-y-6 pt-8 border-t border-zinc-800">
+                <div class="flex items-center gap-3 mb-1">
+                    <svg class="w-6 h-6 text-amber-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    <h2 class="text-2xl font-semibold text-white">MaxScript vs C++ — What Changed?</h2>
+                </div>
+                <p class="text-zinc-400 text-sm">FFD PRO started as a free MaxScript experiment. The C++ version is a complete rewrite from scratch — faster, richer, and built to last.</p>
+
+                <div class="overflow-x-auto rounded-xl border border-zinc-700">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-zinc-700">
+                                <th class="text-left px-5 py-3 text-zinc-400 font-semibold bg-zinc-950/60 w-1/2">Feature</th>
+                                <th class="text-center px-4 py-3 text-zinc-400 font-semibold bg-zinc-950/60">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="text-xs uppercase tracking-wider">MaxScript</span>
+                                        <a href="https://3djps360.gumroad.com/l/FFDPRO" target="_blank" class="inline-flex items-center gap-1 text-[10px] text-emerald-400 hover:text-emerald-300 transition-colors font-medium">
+                                            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                            Free Download
+                                        </a>
+                                    </div>
+                                </th>
+                                <th class="text-center px-4 py-3 bg-amber-500/10 border-l border-amber-500/20">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">C++ PRO</span>
+                                        <span class="text-[10px] text-amber-500/70 font-medium">Coming Soon</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-800">
+                            <!-- Architecture -->
+                            <tr class="bg-zinc-800/30">
+                                <td colspan="3" class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Core Architecture</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Engine</td>
+                                <td class="px-4 py-3 text-center text-zinc-400 text-xs">Interpreted MaxScript<br><span class="text-zinc-600">(slow on heavy meshes)</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-white text-xs font-medium">Native C++ Plugin<br><span class="text-emerald-400">Zero interpreter overhead</span></td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Appears in Modifier List</td>
+                                <td class="px-4 py-3 text-center text-zinc-500 text-xs">❌ Run as script only</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 font-medium">✅ Native modifier</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Multi-threading</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌ Single-threaded</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 font-medium">✅ OpenMP (500k+ verts)</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Version Compatibility</td>
+                                <td class="px-4 py-3 text-center text-zinc-300 text-xs">✅ Works on any Max version<br><span class="text-zinc-500">No recompile needed</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-white text-xs font-medium">2017 – 2027 + future<br><span class="text-zinc-500">SDK compiled per version</span></td>
+                            </tr>
+                            <!-- Deformers -->
+                            <tr class="bg-zinc-800/30">
+                                <td colspan="3" class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Deformers</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Total Deformers</td>
+                                <td class="px-4 py-3 text-center text-zinc-400 font-semibold">18</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-amber-400 font-bold text-lg">25</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">New Deformers in C++</td>
+                                <td class="px-4 py-3 text-center text-zinc-600 text-xs">—</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-xs text-zinc-300 leading-relaxed">Spiral Torsion · Page Curl · Curly<br>Gravity Sag · Spherical Magnet<br>Accordion · Donutify</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Per-layer Gizmo & Center</td>
+                                <td class="px-4 py-3 text-center text-zinc-300 text-xs">✅ Spinners only<br><span class="text-zinc-500">No viewport subobjects</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 text-xs font-medium">✅ Dedicated SubObject Levels<br><span class="text-amber-400">GIZMO + CENTER in viewport</span></td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Limit Effect (Base / Top / Custom)</td>
+                                <td class="px-4 py-3 text-center text-emerald-400">✅</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">CP Masking</td>
+                                <td class="px-4 py-3 text-center text-zinc-300 text-xs">✅ Basic<br><span class="text-zinc-500">Auto-track by movement</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 text-xs font-medium">✅ Enhanced<br><span class="text-amber-400">Baked selection mask</span></td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Morph Snapshots</td>
+                                <td class="px-4 py-3 text-center text-emerald-400">✅</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅ Enhanced</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">TCB Spline Interpolation</td>
+                                <td class="px-4 py-3 text-center text-zinc-300 text-xs">✅ From base FFDBox</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 text-xs font-medium">✅ Custom engine<br><span class="text-amber-400">Tension + Continuity control</span></td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Lattice Types (New / Last / Solid Box)</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <!-- Sculpting & Tools -->
+                            <tr class="bg-zinc-800/30">
+                                <td colspan="3" class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Sculpting & CP Tools</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Live Sculpting Brushes</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅ 6 brushes</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Sculpt Symmetry (X / Y / Z)</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Smart Selection (Loop / Grow / Shrink)</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Planarize X / Y / Z</td>
+                                <td class="px-4 py-3 text-center text-zinc-500 text-xs">Coded, not released</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Circleify</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Conform to Shape</td>
+                                <td class="px-4 py-3 text-center text-zinc-300 text-xs">✅ From base FFDBox</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 text-xs font-medium">✅ Enhanced<br><span class="text-amber-400">Inside/Outside filter + Offset</span></td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Animate All CPs (Point3 controllers)</td>
+                                <td class="px-4 py-3 text-center text-zinc-300 text-xs">✅ From base FFDBox</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 text-xs font-medium">✅ Enhanced</td>
+                            </tr>
+                            <!-- Display -->
+                            <tr class="bg-zinc-800/30">
+                                <td colspan="3" class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Display & Settings</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Display Overlays (Lattice / Source / See-Thru)</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Volume Falloff Control</td>
+                                <td class="px-4 py-3 text-center text-zinc-300 text-xs">✅ From base FFDBox</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 text-xs font-medium">✅ Enhanced<br><span class="text-amber-400">Only In Volume / All Vertices</span></td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Macro Listener Control</td>
+                                <td class="px-4 py-3 text-center"><span class="text-zinc-600">❌</span></td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400">✅</td>
+                            </tr>
+                            <!-- Pricing -->
+                            <tr class="bg-zinc-800/30">
+                                <td colspan="3" class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Pricing</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Price</td>
+                                <td class="px-4 py-3 text-center text-emerald-400 font-bold">FREE</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-amber-400 font-bold">One-time purchase</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-800/40 transition-colors">
+                                <td class="px-5 py-3 text-zinc-300">Updates & Support</td>
+                                <td class="px-4 py-3 text-center text-zinc-400 text-xs">Community only</td>
+                                <td class="px-4 py-3 text-center bg-amber-500/5 border-l border-amber-500/10 text-emerald-400 font-medium">✅ Free forever</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
             <!-- Lattice Resolution -->
             <section id="lattice-resolution" class="space-y-6 pt-8 border-t border-zinc-800">
                 <h2 class="text-2xl font-semibold text-white">1. Lattice & Layers (Resolution)</h2>
@@ -169,7 +357,7 @@
                         </div>
                         <ul class="text-sm text-zinc-300 space-y-2">
                             <li><strong class="text-amber-500">Update All:</strong> Rebuilds the entire lattice structure for all layers.</li>
-                            <li><strong class="text-amber-500">Update Layer:</strong> Rebuilds only the currently selected layer.</li>
+                            <li><strong class="text-amber-500">Update Layer:</strong> Rebuilds only the currently selected layer. <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-yellow-500/15 text-yellow-400 border border-yellow-500/30"><svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>Under Development</span></li>
                         </ul>
                     </div>
                     
