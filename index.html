@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFD PRO - Official Documentation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #18181b; /* zinc-900 */
+            color: #e4e4e7; /* zinc-200 */
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #18181b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+        .nav-link { transition: all 0.2s ease-in-out; }
+        .nav-link:hover {
+            color: #fff;
+            background-color: #27272a;
+            padding-left: 1rem;
+            border-left: 2px solid #f59e0b; /* Amber 500 */
+        }
+
+        .param-badge {
+            background-color: #27272a;
+            border: 1px solid #3f3f46;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #a1a1aa;
+        }
+
+        /* Accordion transition for deformers */
+        .deformer-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease-out;
+        }
+        .deformer-content.open {
+            grid-template-rows: 1fr;
+        }
+        .deformer-inner {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased flex h-screen overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-72 flex-shrink-0 bg-zinc-950 border-r border-zinc-800 flex flex-col h-full">
+        <div class="p-6 border-b border-zinc-800">
+            <h1 class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16" /><path d="M8 4h8" /><path d="M4 20L8 4" /><path d="M20 20L16 4" /><path d="M5 16h14" /><path d="M6 12h12" /><path d="M7 8h10" /></svg>
+                FFD PRO
+            </h1>
+            <p class="text-xs text-zinc-400 mt-1">Official Documentation</p>
+            <div class="mt-3 inline-flex items-center rounded-md bg-amber-500/10 px-2 py-1 text-xs font-medium text-amber-500 ring-1 ring-inset ring-amber-500/20">
+                3ds Max 2017 - 2027 (and future versions)
+            </div>
+            
+            <!-- Get the tool CTA -->
+            <a href="http://3djps360.gumroad.com/l/FFD_PRO" target="_blank" class="mt-4 flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-400 text-zinc-900 font-bold py-2 px-4 rounded transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                Get FFD PRO
+            </a>
+        </div>
+        
+        <nav class="p-4 flex flex-col gap-1 text-sm font-medium text-zinc-400 overflow-y-auto flex-1">
+            <a href="#introduction" class="nav-link block py-2 px-3 rounded-md">Introduction & Use Cases</a>
+            <a href="#lattice-resolution" class="nav-link block py-2 px-3 rounded-md">1. Lattice Resolution</a>
+            <a href="#the-deformers" class="nav-link block py-2 px-3 rounded-md">2. The 25 Deformers</a>
+            <a href="#layer-properties" class="nav-link block py-2 px-3 rounded-md">3. Layer Properties</a>
+            <a href="#selection-tools" class="nav-link block py-2 px-3 rounded-md">4. Selection & CP Tools</a>
+            <a href="#gizmo-center" class="nav-link block py-2 px-3 rounded-md">5. Gizmo & Center</a>
+            <a href="#sculpting" class="nav-link block py-2 px-3 rounded-md">6. Deform & Sculpting</a>
+            <a href="#display-settings" class="nav-link block py-2 px-3 rounded-md">7. Display & Settings</a>
+        </nav>
+
+        <!-- Social Links -->
+        <div class="p-4 border-t border-zinc-800 bg-zinc-950/80">
+            <p class="text-xs font-semibold text-zinc-500 mb-3 uppercase tracking-wider">Connect & Support</p>
+            <div class="flex flex-wrap gap-3">
+                <a href="https://buymeacoffee.com/mostafa_ahmed360" target="_blank" title="Buy Me A Coffee" class="text-zinc-400 hover:text-[#FFDD00] transition-colors"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.216 10.339c-.048-.718-.538-1.28-1.246-1.428l-3.32-.693-1.042-3.805a1.49 1.49 0 0 0-1.423-1.096H6.108a1.5 1.5 0 0 0-1.455 1.137l-1.85 7.427a1.49 1.49 0 0 0 .524 1.533A1.494 1.494 0 0 0 4.2 13.88h3.916l-1.066 3.896a1.5 1.5 0 0 0 .584 1.58A1.49 1.49 0 0 0 8.5 19.5h7.077c.692 0 1.298-.475 1.45-1.144l1.454-6.402h2.247c.571 0 1.05-.411 1.135-.975l.353-2.64zM10.434 6.786l.666 2.433H8.388l.617-2.467h1.43zm2.593 11.214H8.502l.968-3.535h4.82l-.994 4.382l-.27.053zM6.924 10.784L8.14 5.922h4.526l1.242 4.536l-6.984.326zm9.351 6.942l-1.268 5.58H8.5l-1.433-5.234h4.417c.57 0 1.049-.41 1.135-.974l.654-2.884h4.032l-1.03 4.512z"/></svg></a>
+                <a href="https://www.youtube.com/@JOKERPRODUCTION-" target="_blank" title="YouTube" class="text-zinc-400 hover:text-[#FF0000] transition-colors"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="https://www.artstation.com/jokerproduction360" target="_blank" title="ArtStation" class="text-zinc-400 hover:text-[#13AFF0] transition-colors"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M2.08 17.514L.982 19.46a.359.359 0 0 0 .048.406c.094.108.232.164.382.164h17.155c.164 0 .315-.078.403-.207.086-.129.112-.294.067-.442l-1.956-6.425H6.26l-4.18 4.558zm12.632-15.11a.417.417 0 0 0-.361-.205H9.664a.423.423 0 0 0-.372.219L4.015 11.603h12.39L14.712 2.404zm5.006 8.528H18.06l3.35 11.002h1.666a.419.419 0 0 0 .37-.215l.504-.881a.413.413 0 0 0-.012-.423L19.72 10.932z"/></svg></a>
+                <a href="https://www.instagram.com/mostafa_ahmed360/" target="_blank" title="Instagram" class="text-zinc-400 hover:text-[#E1306C] transition-colors"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                <a href="https://www.facebook.com/mostafa.ahmed360" target="_blank" title="Facebook" class="text-zinc-400 hover:text-[#1877F2] transition-colors"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <a href="https://x.com/mostafa_ahme360" target="_blank" title="X (Twitter)" class="text-zinc-400 hover:text-white transition-colors"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-zinc-900 scroll-smooth">
+        <div class="max-w-5xl mx-auto px-8 py-12 space-y-16">
+            
+            <!-- Introduction & Use Cases -->
+            <section id="introduction" class="space-y-4">
+                <h2 class="text-4xl font-bold text-white tracking-tight">A Unified Layered Deformation Engine</h2>
+                <p class="text-lg text-zinc-300 leading-relaxed">
+                    <strong>FFD PRO</strong> is an advanced, C++ native modifier for Autodesk 3ds Max. It completely revolutionizes standard Free-Form Deformation by introducing a non-destructive, multi-layered approach, a built-in Sculpting Engine, and 25 mathematically precise parametric deformers wrapped into a single, high-performance modifier.
+                </p>
+
+                <div class="bg-zinc-800/80 border border-emerald-500/20 p-4 rounded-xl mt-2 flex items-start gap-4">
+                    <svg class="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m14-6h2m-2 6h2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    <div>
+                        <h3 class="text-white font-semibold mb-1 text-sm">OpenMP Multi-threading</h3>
+                        <p class="text-sm text-zinc-400">Natively parallelized to smoothly deform heavy meshes (500k+ vertices) with zero lag.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-amber-500/10 border border-amber-500/20 p-5 rounded-xl mt-4">
+                    <h3 class="text-base font-semibold text-amber-500 mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Primary Use Cases
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-zinc-300">
+                        <div>
+                            <strong class="text-white block mb-1">Parametric Modeling</strong>
+                            Build complex shapes mathematically (Spirals, Accordions, Waves) without destructive topology edits.
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">Procedural Animation</strong>
+                            Every parameter, Gizmo, Center, and Morph weight is animatable. Perfect for looping effects and motion graphics.
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">Mesh Modification</strong>
+                            Live sculpting brushes, geometry conforming, and targeted vertex manipulation (Push/Relax/Circleify).
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lattice Resolution -->
+            <section id="lattice-resolution" class="space-y-6 pt-8 border-t border-zinc-800">
+                <h2 class="text-2xl font-semibold text-white">1. Lattice & Layers (Resolution)</h2>
+                <p class="text-zinc-400">Manage the fundamental grid size and organize your deformation stack.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-zinc-800 rounded-xl p-6 border border-zinc-700">
+                        <h3 class="text-lg font-medium text-white mb-3">Lattice Resolution</h3>
+                        <p class="text-sm text-zinc-400 mb-4">Set the physical point count of your control cage via the <strong>X, Y, and Z</strong> spinners.</p>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Lattice Resolution</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/lattice_resolution.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul class="text-sm text-zinc-300 space-y-2">
+                            <li><strong class="text-amber-500">Update All:</strong> Rebuilds the entire lattice structure for all layers.</li>
+                            <li><strong class="text-amber-500">Update Layer:</strong> Rebuilds only the currently selected layer.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-zinc-800 rounded-xl p-6 border border-zinc-700">
+                        <h3 class="text-lg font-medium text-white mb-3">Layer Stack Management</h3>
+                        <p class="text-sm text-zinc-400 mb-4">Add, remove, reorder, and rename your modifier stack inside FFD PRO.</p>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Layer Stack</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/layer_stack.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-sm text-zinc-300">Easily combine multiple algorithms by stacking deformers and moving them up or down the evaluation hierarchy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Deformers (Accordions) -->
+            <section id="the-deformers" class="space-y-6 pt-8 border-t border-zinc-800">
+                <h2 class="text-2xl font-semibold text-white">2. The 25 Deformers</h2>
+                <p class="text-zinc-400 mb-6">Click on any deformer below to see its specific parameters and a visual demonstration of the effect.</p>
+                
+                <!-- Deformers injected via JS -->
+                <div id="deformers-container" class="space-y-2">
+                    <!-- Populated by script below -->
+                </div>
+            </section>
+
+            <!-- Layer Properties -->
+            <section id="layer-properties" class="space-y-6 pt-8 border-t border-zinc-800">
+                <h2 class="text-2xl font-semibold text-white">3. Layer Properties</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700">
+                        <h4 class="text-white font-medium mb-3">Lattice Type & Masking</h4>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Masking & Lattice Types</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/masking.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul class="text-sm text-zinc-300 space-y-2">
+                            <li><strong class="text-white">New Lattice:</strong> Starts a fresh grid.</li>
+                            <li><strong class="text-white">Last Lattice:</strong> Inherits previous deformations for smooth blending.</li>
+                            <li><strong class="text-white">Solid Box:</strong> Pure mathematical mesh deformation.</li>
+                            <li><strong class="text-amber-500">Enable Masking:</strong> Select CPs, click <strong>Set</strong> to bake a mask. Only those points will be affected by this layer's deformer.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700">
+                        <h4 class="text-white font-medium mb-3">Axis, Limits & Morph Snapshots</h4>
+                        <ul class="text-sm text-zinc-300 space-y-4">
+                            <li>Define the operation axis (X, Y, Z) and use <strong>Flip</strong> to reverse the math vector.</li>
+                            <li><strong>Limit Effect:</strong> Bound the physical range of the deformer using Base/Top limits.</li>
+                            <li><strong>Morph Snapshots:</strong> Convert manual sculpts/CP edits into a morph target driven by a Weight slider, freeing up points for new edits.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Selection & CP Tools -->
+            <section id="selection-tools" class="space-y-6 pt-8 border-t border-zinc-800">
+                <h2 class="text-2xl font-semibold text-white">4. Selection & CP Tools</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700">
+                        <h4 class="text-white font-medium mb-3">Smart Selection</h4>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Selection Tools</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/smart_selection.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul class="text-sm text-zinc-300 space-y-2">
+                            <li><strong class="text-white">All X/Y/Z:</strong> Selects complete planes based on current selection.</li>
+                            <li><strong class="text-white">Loop:</strong> Selects a continuous ring based on two seed points.</li>
+                            <li><strong class="text-white">Grow/Shrink:</strong> Expands or shrinks selection smartly.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700">
+                        <h4 class="text-white font-medium mb-3">Topology Align</h4>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Planarize & Circleify</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/planarize_circleify.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul class="text-sm text-zinc-300 space-y-2">
+                            <li><strong class="text-white">Planarize X/Y/Z:</strong> Flattens points perfectly along an axis plane.</li>
+                            <li><strong class="text-white">Circleify:</strong> Averages selected points into a perfect circle based on their local bounding box.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700 md:col-span-2 flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h4 class="text-white font-medium mb-2">Conform to Shape</h4>
+                            <!-- Video Demo -->
+                            <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-3">
+                                <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Conform to Shape</span>
+                                <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                    <source src="VIDEOS/conform_shape.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <p class="text-sm text-zinc-400">Projects Control Points directly onto the surface of the underlying mesh. Use filters for Inside/Outside points and adjust Offset distance.</p>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-white font-medium mb-2">Animate All</h4>
+                            <!-- Video Demo -->
+                            <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-3">
+                                <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Animate All</span>
+                                <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                    <source src="VIDEOS/animate_all.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <p class="text-sm text-zinc-400">Automatically assigns Point3 controllers to all Control Points, enabling instant Keyframe recording for manual point animation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gizmo & Center -->
+            <section id="gizmo-center" class="space-y-6 pt-8 border-t border-zinc-800">
+                <h2 class="text-2xl font-semibold text-white">5. Gizmo & Center Transform</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700">
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Gizmo Transform</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/gizmo_transform.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-sm text-zinc-300 mb-4">Every layer possesses its own independent, fully animatable Gizmo and Center point. You can move them freely in the viewport or use precision spinners.</p>
+                    </div>
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700 flex flex-col justify-center">
+                        <h4 class="text-white font-medium mb-3">Reset Tools</h4>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Reset Tools</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/reset_tools.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-sm text-zinc-400">Easily revert transforms to zero. Reset CPs returns points to base shape, Reset Volume resets the Gizmo box, and Reset Center centers the pivot.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deform & Sculpting -->
+            <section id="sculpting" class="space-y-6 pt-8 border-t border-zinc-800">
+                <h2 class="text-2xl font-semibold text-white">6. Deform & Sculpting Engine</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Volume Settings -->
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700 h-full">
+                        <h4 class="text-white font-medium mb-4">Volume & Interpolation Splines</h4>
+                        
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Volume & Interpolation</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/volume_interpolation.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                        <div class="space-y-4 text-sm">
+                            <div class="border-b border-zinc-700 pb-3">
+                                <p class="text-white font-medium">Only In Volume vs All Vertices</p>
+                                <p class="text-zinc-400"><strong>Only In Volume</strong> limits deformation strictly to geometry inside the lattice. <strong>All Vertices</strong> affects the whole mesh regardless of lattice bounds.</p>
+                            </div>
+                            <div class="border-b border-zinc-700 pb-3">
+                                <p class="text-white font-medium">Falloff Spinner</p>
+                                <p class="text-zinc-400">When 'All Vertices' is ON, adjusting the <strong>Falloff</strong> smoothly fades the deformation effect outwards into the rest of the geometry outside the lattice box.</p>
+                            </div>
+                            <div class="border-b border-zinc-700 pb-3">
+                                <p class="text-white font-medium">Tension Spinner</p>
+                                <p class="text-zinc-400">Controls the tightness of the TCB Spline mathematical curves. Lower values = looser smooth curves. Higher values = rigid, straight boxy lines between points.</p>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium">Continuity Spinner</p>
+                                <p class="text-zinc-400">Modifies the tangent angles of the grid. Tweaking this creates sharp, angular corners or overshooting loops in the interpolation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sculpting -->
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700 h-full">
+                        <h4 class="text-white font-medium mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                            Live Sculpting
+                        </h4>
+                        
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Sculpting Brushes</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/sculpt_symmetry.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                        <p class="text-sm text-zinc-400 mb-3">Check <strong>Enable Sculpt Mode</strong> to draw directly on the viewport. A visual brush ring will appear on the lattice points.</p>
+                        
+                        <ul class="text-sm text-zinc-300 space-y-2 mb-4">
+                            <li><strong>Brushes:</strong> Push/Pull, Move/Grab, Pinch, Relax/Smooth, Scale, Rotate.</li>
+                            <li><strong>Controls:</strong> Adjust <em>Radius</em> and <em>Strength</em>. Use X/Y/Z checkboxes for live mirror Symmetry.</li>
+                        </ul>
+                        
+                        <div class="text-xs text-amber-500/80 bg-amber-500/10 p-3 rounded space-y-1">
+                            <p><strong>Hotkeys:</strong></p>
+                            <p>• <strong>Left Click + Drag:</strong> Sculpt</p>
+                            <p>• <strong>ALT + Drag:</strong> Invert Brush (e.g. Pull instead of Push)</p>
+                            <p>• <strong>SHIFT + Drag:</strong> Temporarily activate Relax/Smooth brush</p>
+                            <p>• <strong>Right-Click:</strong> Exit Sculpt mode</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Display & Settings -->
+            <section id="display-settings" class="space-y-6 pt-8 border-t border-zinc-800 pb-16">
+                <h2 class="text-2xl font-semibold text-white">7. Display & Settings</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-zinc-300">
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700">
+                        <h4 class="text-white font-medium mb-3">Display Overlays</h4>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Display Overlays</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/display_overlays.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul class="space-y-2 text-zinc-400">
+                            <li><strong>Lattice:</strong> Show/hide yellow/orange deformation cage.</li>
+                            <li><strong>Source:</strong> Show original undeformed green reference grid.</li>
+                            <li><strong>See-Thru:</strong> Draws lattice on top of geometry (Ignores Z-Buffer).</li>
+                            <li><strong>CPs:</strong> Show/hide Control Point markers.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-zinc-800 p-6 rounded-xl border border-zinc-700">
+                        <h4 class="text-white font-medium mb-3">Macro Listener Output</h4>
+                        <!-- Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">Macro Listener</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/macro_listener.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-zinc-400 mb-3">Toggles whether interactions echo commands to the MaxScript Listener. Disable these on highly dense meshes to prevent UI lag.</p>
+                        <p class="text-zinc-400">Available toggles: <strong class="text-white">CPs, Gizmo, Spinners, Reset.</strong></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Script to inject the 25 deformers dynamically as Accordions -->
+    <script>
+        const svgProps = 'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"';
+
+        const deformers = [
+            { id: 1, name: "Taper", params: ["Amount", "Curve"], desc: "Scales the geometry progressively along the axis.", svg: `<svg ${svgProps}><path d="M4 20h16" /><path d="M8 4h8" /><path d="M4 20L8 4" /><path d="M20 20L16 4" /><path d="M5 16h14" /><path d="M6 12h12" /><path d="M7 8h10" /></svg>` },
+            { id: 2, name: "Twist", params: ["Angle"], desc: "Rotates the vertices around the specified axis based on their height.", svg: `<svg ${svgProps}><path d="M6 4c0 5 12 11 12 16" /><path d="M18 4c0 5-12 11-12 16" /><path d="M6 4h12" /><path d="M6 20h12" /></svg>` },
+            { id: 3, name: "Bend", params: ["Angle", "Dir", "Aspect"], desc: "Bends the geometry uniformly. Direction rotates the bend vector.", svg: `<svg ${svgProps}><path d="M6 20 Q6 6 20 6 M10 20 Q10 10 20 10 M6 20 h4 M20 6 v4"/></svg>` },
+            { id: 4, name: "Spiral Torsion", params: ["Turns", "X-Offset", "Tightness", "Pitch", "Taper", "Phase"], desc: "Generates complex 3D helical spirals and tentacles without self-intersection.", svg: `<svg ${svgProps}><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4 1.5 4 4s-1.5 4-4 4-2-1-2-2"/></svg>` },
+            { id: 5, name: "Page Curl", params: ["Curl Angle", "Radius", "Progress", "Spiral Pitch"], desc: "Folds the geometry smoothly mimicking a turning book page.", svg: `<svg ${svgProps}><path d="M6 2v20h12v-14l-6-6z" /><path d="M12 2v6h6" /></svg>` },
+            { id: 6, name: "Curly", params: ["Amount", "Direction", "Strength"], desc: "Curls the tips/ends of the mesh gracefully inwards.", svg: `<svg ${svgProps}><path d="M4 12h10c3 0 5-2 5-5s-2-5-5-5-5 2-5 5 2 5 5 5 3-1 3-3"/></svg>` },
+            { id: 7, name: "Stretch", params: ["Stretch", "Amplify"], desc: "Elongates the geometry while realistically thinning the center to preserve volume.", svg: `<svg ${svgProps}><path d="M12 2v20 M8 6l4-4 4 4 M8 18l4 4 4-4 M6 10h12 M6 14h12"/></svg>` },
+            { id: 8, name: "Skew", params: ["Amount", "Dir"], desc: "Tilts the geometry uniformly creating a slanted sheer effect.", svg: `<svg ${svgProps}><path d="M8 4h12l-4 16h-12z" /><path d="M7 12h12"/></svg>` },
+            { id: 9, name: "Squeeze", params: ["Amount", "Curve"], desc: "Pinches or bulges the center of the lattice intensely.", svg: `<svg ${svgProps}><path d="M4 4h16 M4 20h16 M6 4 C6 12 10 12 12 12 C14 12 18 12 18 4 M6 20 C6 12 10 12 12 12 C14 12 18 12 18 20"/></svg>` },
+            { id: 10, name: "Melt", params: ["Melt Amt", "Spread"], desc: "Collapses the geometry downwards, expanding it across the floor plain.", svg: `<svg ${svgProps}><path d="M7 10V4h10v6" /><path d="M7 10c-3 4-4 7-4 10h18c0-3-1-6-4-10" /><path d="M10 10v3" /><path d="M14 10v4" /></svg>` },
+            { id: 11, name: "Gravity (Sag)", params: ["Sag Amt", "Tension", "Offset"], desc: "Applies a catenary physics sag, mimicking a chain hanging under gravity.", svg: `<svg ${svgProps}><path d="M4 6c0 14 16 14 16 0"/><circle cx="4" cy="4" r="2" fill="currentColor"/><circle cx="20" cy="4" r="2" fill="currentColor"/></svg>` },
+            { id: 12, name: "Push", params: ["Push Amt"], desc: "Inflates or deflates points along their spherical normals.", svg: `<svg ${svgProps}><path d="M12 2v4M12 18v4M2 12h4M18 12h4M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0"/></svg>` },
+            { id: 13, name: "Spherical Magnet", params: ["Strength", "Radius", "Sharpness", "Center X/Y/Z"], desc: "Attracts or repels vertices towards a specific 3D point with smooth falloff.", svg: `<svg ${svgProps}><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M19 19l-3-3M19 5l-3 3M5 19l3-3"/></svg>` },
+            { id: 14, name: "Relax", params: ["Relax", "Iters"], desc: "Smooths topological high-frequency details, shrinking sharp corners.", svg: `<svg ${svgProps}><path d="M2 16l4-6 4 6 4-6 4 6" stroke-dasharray="2 3"/><path d="M2 9c3-3 5-3 8 0s5 3 8 0"/></svg>` },
+            { id: 15, name: "Noise", params: ["Str X", "Str Y", "Str Z", "Scale", "Phase"], desc: "Applies pseudo-random 3D fractal displacement for organic variations.", svg: `<svg ${svgProps}><path d="M2 12l4-8 4 14 5-10 4 6 3-3"/></svg>` },
+            { id: 16, name: "Accordion", params: ["Frequency", "Amplitude", "Phase"], desc: "Compresses and expands the lattice into regular bellows/folds.", svg: `<svg ${svgProps}><path d="M4 4v16M20 4v16M4 8l16-3M4 12l16-3M4 16l16-3M4 20l16-3"/></svg>` },
+            { id: 17, name: "Wave", params: ["Amplitude", "Freq", "Phase"], desc: "Generates linear, directional sine waves across the geometry.", svg: `<svg ${svgProps}><path d="M2 12c3-6 6-6 10 0s7 6 10 0"/></svg>` },
+            { id: 18, name: "Ripple", params: ["Amplitude", "Freq", "Phase", "Scale"], desc: "Creates concentric circular wave patterns radiating from the center.", svg: `<svg ${svgProps}><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="10"/></svg>` },
+            { id: 19, name: "Spherify", params: ["Amt (0-1)"], desc: "Morphs the current bounding box shape linearly towards a perfect sphere.", svg: `<svg ${svgProps}><rect x="4" y="4" width="16" height="16" rx="8"/><path d="M4 12h16M12 4v16" stroke-dasharray="2 3"/></svg>` },
+            { id: 20, name: "Boxify", params: ["Amt (0-1)"], desc: "Forces organic shapes to project strictly into a rigid cube/box.", svg: `<svg ${svgProps}><rect x="4" y="4" width="16" height="16" /><circle cx="12" cy="12" r="5" stroke-dasharray="2 3"/><path d="M8.5 8.5L5 5" /><path d="M15.5 8.5L19 5" /><path d="M8.5 15.5L5 19" /><path d="M15.5 15.5L19 19" /></svg>` },
+            { id: 21, name: "Cylindrify", params: ["Amt (0-1)"], desc: "Morphs geometry into a perfect circular tube/cylinder.", svg: `<svg ${svgProps}><ellipse cx="12" cy="6" rx="6" ry="3"/><path d="M6 6v12c0 1.6 2.7 3 6 3s6-1.4 6-3V6"/></svg>` },
+            { id: 22, name: "Coneify", params: ["Amount"], desc: "Pinches the top into a point while rounding the base into a cone.", svg: `<svg ${svgProps}><ellipse cx="12" cy="18" rx="8" ry="3"/><path d="M4 18L12 3l8 15"/></svg>` },
+            { id: 23, name: "Pyramidify", params: ["Amount"], desc: "Pinches the top into a point while retaining the rectangular base.", svg: `<svg ${svgProps}><path d="M12 3L3 17h18zM12 3v14M12 17l6-4"/></svg>` },
+            { id: 24, name: "Donutify", params: ["Major Rad", "Wrap Angle"], desc: "Wraps the entire geometry circularly onto itself into a Torus.", svg: `<svg ${svgProps}><ellipse cx="12" cy="12" rx="10" ry="6"/><ellipse cx="12" cy="12" rx="4" ry="2"/></svg>` },
+            { id: 25, name: "Manual Morph", params: ["Weight"], desc: "Bakes manual CP offsets into an animatable morph target.", svg: `<svg ${svgProps}><path d="M4 18l8-6 8 6" /><circle cx="12" cy="12" r="2" fill="currentColor" /><path d="M12 8V3M9 6l3-3 3 3" /><path d="M4 18h16" stroke-dasharray="2 3"/></svg>` }
+        ];
+
+        const container = document.getElementById('deformers-container');
+        
+        deformers.forEach(d => {
+            const paramsHtml = d.params.map(p => `<span class="param-badge">${p}</span>`).join(' ');
+            const videoName = d.name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '') + '.mp4';
+            
+            const item = document.createElement('div');
+            item.className = "bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden group";
+            
+            // Header (Clickable)
+            const header = document.createElement('button');
+            header.className = "w-full px-6 py-4 flex items-center justify-between text-left hover:bg-zinc-700/50 transition-colors focus:outline-none";
+            header.innerHTML = `
+                <div class="flex items-center gap-4 text-zinc-300 group-hover:text-white transition-colors">
+                    ${d.svg}
+                    <span class="font-semibold text-lg">${d.id}. ${d.name}</span>
+                </div>
+                <svg class="w-5 h-5 text-zinc-500 transform transition-transform duration-300 chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            `;
+            
+            // Content (Collapsible)
+            const content = document.createElement('div');
+            content.className = "deformer-content";
+            
+            // Fix Melt typo
+            if (d.name === "Melt") {
+                d.desc = "Collapses the geometry downwards, expanding it across the floor plane.";
+            }
+
+            content.innerHTML = `
+                <div class="deformer-inner">
+                    <div class="px-6 pb-6 pt-2 border-t border-zinc-700/50">
+                        <p class="text-sm text-zinc-400 mb-4">${d.desc}</p>
+                        
+                        <!-- 16:9 Video Demo -->
+                        <div class="aspect-video bg-zinc-950/50 rounded-lg border border-zinc-700 overflow-hidden relative group mb-4">
+                            <span class="absolute top-2 left-2 z-10 px-2 py-1 bg-zinc-900/80 border border-zinc-700 text-[10px] font-semibold text-zinc-400 rounded uppercase tracking-wider">${d.name} Demo</span>
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="VIDEOS/${videoName}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <p class="text-xs text-zinc-500 uppercase tracking-wider font-semibold mb-2">Parameters</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${paramsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Toggle logic
+            header.addEventListener('click', () => {
+                const isOpen = content.classList.contains('open');
+                
+                // Close others (optional, for accordion style)
+                document.querySelectorAll('.deformer-content').forEach(c => c.classList.remove('open'));
+                document.querySelectorAll('.chevron').forEach(c => c.style.transform = 'rotate(0deg)');
+                
+                if (!isOpen) {
+                    content.classList.add('open');
+                    header.querySelector('.chevron').style.transform = 'rotate(180deg)';
+                }
+            });
+            
+            item.appendChild(header);
+            item.appendChild(content);
+            container.appendChild(item);
+        });
+    </script>
+</body>
+</html>
