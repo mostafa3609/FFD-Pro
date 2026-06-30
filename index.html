@@ -665,12 +665,12 @@
         });
 
         // Lightbox Modal Logic
-        const modal = document.getElementById('video-modal');
-        const modalVideo = document.getElementById('modal-video');
-        const modalSource = document.getElementById('modal-video-source');
-        const modalTitle = document.getElementById('modal-video-title');
-
         function openLightbox(videoSrc, title) {
+            const modal = document.getElementById('video-modal');
+            const modalVideo = document.getElementById('modal-video');
+            const modalSource = document.getElementById('modal-video-source');
+            const modalTitle = document.getElementById('modal-video-title');
+
             modalTitle.textContent = title;
             modalSource.src = videoSrc;
             modalVideo.load();
@@ -694,13 +694,17 @@
         }
 
         function closeLightbox() {
+            const modal = document.getElementById('video-modal');
+            const modalVideo = document.getElementById('modal-video');
+            const modalSource = document.getElementById('modal-video-source');
+
             modalVideo.pause();
             modalSource.src = '';
             modalVideo.load();
-            
+
             modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
-            
+
             setTimeout(() => {
                 modal.classList.remove('flex');
                 modal.classList.add('hidden');
@@ -708,12 +712,13 @@
         }
 
         function closeLightboxOnBg(e) {
-            if (e.target === modal) {
+            if (e.target === document.getElementById('video-modal')) {
                 closeLightbox();
             }
         }
 
         function changeSpeed(speed, buttonElement) {
+            const modalVideo = document.getElementById('modal-video');
             modalVideo.playbackRate = speed;
             
             // Reset speed buttons style
@@ -731,6 +736,8 @@
 
         // Close on Escape, toggle play/pause on Space
         window.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('video-modal');
+            const modalVideo = document.getElementById('modal-video');
             if (modal.classList.contains('flex')) {
                 if (e.key === 'Escape') {
                     closeLightbox();
