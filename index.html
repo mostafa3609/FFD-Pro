@@ -12,10 +12,10 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #18181b; /* zinc-900 */
-            color: #e4e4e7; /* zinc-200 */
+            background-color: #18181b;
+            color: #e4e4e7;
         }
-        
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #18181b; }
@@ -27,7 +27,7 @@
             color: #fff;
             background-color: #27272a;
             padding-left: 1rem;
-            border-left: 2px solid #f59e0b; /* Amber 500 */
+            border-left: 2px solid #f59e0b;
         }
 
         .param-badge {
@@ -40,24 +40,74 @@
             color: #a1a1aa;
         }
 
-        /* Accordion transition for deformers */
+        /* Accordion */
         .deformer-content {
             display: grid;
             grid-template-rows: 0fr;
             transition: grid-template-rows 0.3s ease-out;
         }
-        .deformer-content.open {
-            grid-template-rows: 1fr;
+        .deformer-content.open { grid-template-rows: 1fr; }
+        .deformer-inner { overflow: hidden; }
+
+        /* ── Mobile Sidebar Drawer ── */
+        #sidebar {
+            transition: transform 0.3s ease;
         }
-        .deformer-inner {
-            overflow: hidden;
+        #sidebar.sidebar-open {
+            transform: translateX(0) !important;
+        }
+        #sidebar-overlay {
+            transition: opacity 0.3s ease;
+        }
+
+        /* ── Mobile top bar ── */
+        @media (max-width: 767px) {
+            body { display: block; height: auto; overflow: auto; }
+            #sidebar {
+                position: fixed;
+                top: 0; left: 0;
+                height: 100%;
+                z-index: 50;
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            #main-content { padding-top: 56px; }
+        }
+        @media (min-width: 768px) {
+            body { display: flex; height: 100vh; overflow: hidden; }
+            #sidebar { position: relative; transform: none !important; width: 18rem; }
+            #mobile-topbar { display: none !important; }
+            #sidebar-overlay { display: none !important; }
+            #main-content { padding-top: 0; }
         }
     </style>
 </head>
-<body class="antialiased flex h-screen overflow-hidden">
+<body class="antialiased">
+
+    <!-- ── Mobile Top Bar ── -->
+    <header id="mobile-topbar" class="fixed top-0 left-0 right-0 z-40 h-14 bg-zinc-950 border-b border-zinc-800 flex items-center justify-between px-4">
+        <button id="hamburger" aria-label="Open menu" class="text-zinc-400 hover:text-white p-1">
+            <svg id="icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <span class="text-white font-bold flex items-center gap-2 text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16"/><path d="M8 4h8"/><path d="M4 20L8 4"/><path d="M20 20L16 4"/><path d="M5 16h14"/><path d="M6 12h12"/><path d="M7 8h10"/></svg>
+            FFD PRO
+        </span>
+        <a href="http://3djps360.gumroad.com/l/FFD_PRO" target="_blank" class="bg-amber-500 hover:bg-amber-400 text-zinc-900 font-bold text-xs py-1.5 px-3 rounded transition-colors">
+            Get PRO
+        </a>
+    </header>
+
+    <!-- ── Sidebar Overlay (mobile) ── -->
+    <div id="sidebar-overlay" class="fixed inset-0 z-40 bg-black/60 hidden backdrop-blur-sm"></div>
 
     <!-- Sidebar Navigation -->
-    <aside class="w-72 flex-shrink-0 bg-zinc-950 border-r border-zinc-800 flex flex-col h-full">
+    <aside id="sidebar" class="flex-shrink-0 bg-zinc-950 border-r border-zinc-800 flex flex-col h-full">
         <div class="p-6 border-b border-zinc-800">
             <h1 class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16" /><path d="M8 4h8" /><path d="M4 20L8 4" /><path d="M20 20L16 4" /><path d="M5 16h14" /><path d="M6 12h12" /><path d="M7 8h10" /></svg>
@@ -113,8 +163,8 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto bg-zinc-900 scroll-smooth">
-        <div class="max-w-5xl mx-auto px-8 py-12 space-y-16">
+    <main id="main-content" class="flex-1 overflow-y-auto bg-zinc-900 scroll-smooth">
+        <div class="max-w-5xl mx-auto px-4 md:px-8 py-8 md:py-12 space-y-16">
             
             <!-- Introduction & Use Cases -->
             <section id="introduction" class="space-y-4">
@@ -977,5 +1027,43 @@
             </div>
         </div>
     </div>
+
+    <!-- ── Mobile Sidebar Logic ── -->
+    <script>
+        const sidebar      = document.getElementById('sidebar');
+        const overlay      = document.getElementById('sidebar-overlay');
+        const hamburger    = document.getElementById('hamburger');
+        const iconOpen     = document.getElementById('icon-open');
+        const iconClose    = document.getElementById('icon-close');
+
+        function openSidebar() {
+            sidebar.classList.add('sidebar-open');
+            overlay.classList.remove('hidden');
+            iconOpen.classList.add('hidden');
+            iconClose.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('sidebar-open');
+            overlay.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.contains('sidebar-open') ? closeSidebar() : openSidebar();
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar when any nav link is clicked on mobile
+        document.querySelectorAll('#sidebar .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) closeSidebar();
+            });
+        });
+    </script>
 </body>
 </html>
